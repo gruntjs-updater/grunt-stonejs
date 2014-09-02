@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 				
 				require('../service/put-stone-module.js')(f.src [0], stone, config, options.stoneName, grunt, elements, options);
 					
-				stone.src += 'return ' + options.innerContainer + ' [' + options.stoneName + '];\n})();';
+				stone.src += 'return ' + options.innerContainer + ' [\'' + options.stoneName + '\'];\n})();';
 				grunt.file.write(f.dest, stone.src);
 
 				grunt.log.writeln('JS Stone "' + f.dest + '" created.');

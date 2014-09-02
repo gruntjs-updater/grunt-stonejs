@@ -1,7 +1,7 @@
 {
   "name": "grunt-stonejs",
   "description": "AMD to stone compiler. Best ever.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/kodmax/stonejs",
   "author": {
     "name": "Marcin",
