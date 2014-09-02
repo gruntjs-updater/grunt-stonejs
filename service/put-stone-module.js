@@ -30,8 +30,22 @@ var put = function (path, stone, config, name, grunt, elements, options) {
 		}		
 	});
 
-	var deps = '';
-	stone.src += options.innerContainer + ' [\'' + name + '\'] = (' + module.f + ')(' + deps + ');\n';
+	var injector = [];
+	module.deps.forEach(function (dep) {
+		if (dep !== 'module') {
+			injector.push(options.innerContainer + ' [\'' + dep + '\']');
+			
+		} else {
+			if (config.config && config.config [name]) {
+				injector.push('{config: function () { return ' + JSON.stringify(config.config [name]) + '; }}');
+				
+			} else {
+				injector.push('{config: function () { return {}; }}');
+			}
+		}
+		
+	})
+	stone.src += options.innerContainer + ' [\'' + name + '\'] = (' + module.f + ')(' + injector.join(', ') + ');\n';
 	
 	return module;
 };
