@@ -27,12 +27,13 @@ module.exports = function(grunt) {
 				grunt.log.error('Only one source file per stone is supported.');
 				
 			} else {
-				var stone = 'var ' + options.stoneName + ' = (function () {\nvar ' + options.innerContainer + ' = {};\n';
+				var stone = {src: 'var ' + options.stoneName + ' = (function () {\nvar ' + options.innerContainer + ' = {};\n'};
+				var elements = {};
 				
-				require('../service/put-stone-module.js')(f.src [0], stone, config, options.stoneName, grunt);
+				require('../service/put-stone-module.js')(f.src [0], stone, config, options.stoneName, grunt, elements, options);
 					
-				stone += 'return ' + options.innerContainer + ' [' + options.stoneName + '];\n})();';
-				grunt.file.write(f.dest, stone);
+				stone.src += 'return ' + options.innerContainer + ' [' + options.stoneName + '];\n})();';
+				grunt.file.write(f.dest, stone.src);
 
 				grunt.log.writeln('JS Stone "' + f.dest + '" created.');
 			}
