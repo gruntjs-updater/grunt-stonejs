@@ -29,7 +29,7 @@ Useful for creating small js libraries while developing them in an AMD environme
 If your code takes say 15kbytes of code then why adding another 15 for almond?
 The output can be further minified (f.ex. with uglify).
 
-If you wish to make the stone AMD compiland you should concatenate the result with some sort of custom code the reach the goal and then remove window.'stoneName'.
+If you wish to make the output stone AMD compliant you should concatenate the result with some sort of custom code the reach the goal and then remove window.'stoneName'.
 
 ```js
 grunt.initConfig({

@@ -1,23 +1,23 @@
 {
   "name": "grunt-stonejs",
   "description": "AMD to stone compiler. Best ever.",
-  "version": "0.1.4",
-  "homepage": "https://github.com/kodmax/stonejs",
+  "version": "0.1.6",
+  "homepage": "https://github.com/kodmax/grunt-stonejs",
   "author": {
     "name": "Marcin",
     "email": "dajhajs@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kodmax/stonejs.git"
+    "url": "git://github.com/kodmax/grunt-stonejs.git"
   },
   "bugs": {
-    "url": "https://github.com/kodmax/stonejs/issues"
+    "url": "https://github.com/kodmax/grunt-stonejs/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/kodmax/stonejs/blob/master/LICENSE-MIT"
+      "url": "https://github.com/kodmax/grunt-stonejs/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
