@@ -24,30 +24,38 @@ In your project's Gruntfile, add a section named `stonejs` to the data object pa
 
 ```js
 grunt.initConfig({
-  stonejs: {
-    options: {
-      // Task-specific options go here.
+    stonejs: {
+          xhr: {
+              options: {
+                stoneName: 'xhr',
+                configFile: 'scripts/app.js',
+                baseDir: 'app/'
+              },
+              files: {
+                '.tmp/xhr.js': 'services/xhr.js'
+              }
+            }           
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.stoneName
 Type: `String`
-Default value: `',  '`
+The output stone name. First line of the generated file will be var 'stoneName'. It should be the same as the target module name in your requirejs config paths.
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
+#### options.configFile
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+requirejs config file for your project.
+
+#### options.baseDir
+Type: `String`
+Default value: `'.'`
+
+the app (public) directory for your project. this is a brigde between the gruntfile dir and the app that requirejs baseUrl references to. 
 
 ### Usage Examples
 
@@ -56,12 +64,18 @@ In this example, the default options are used to do something with whatever. So 
 
 ```js
 grunt.initConfig({
-  stonejs: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    stonejs: {
+          xhr: {
+              options: {
+                stoneName: 'xhr',
+                configFile: 'scripts/app.js',
+                baseDir: 'app/'
+              },
+              files: {
+                '.tmp/xhr.js': 'services/xhr.js'
+              }
+            }           
     },
-  },
 });
 ```
 
@@ -70,15 +84,18 @@ In this example, custom options are used to do something else with whatever else
 
 ```js
 grunt.initConfig({
-  stonejs: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+    stonejs: {
+          xhr: {
+              options: {
+                stoneName: 'xhr',
+                configFile: 'scripts/app.js',
+                baseDir: 'app/'
+              },
+              files: {
+                '.tmp/xhr.js': 'services/xhr.js'
+              }
+            }           
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
 });
 ```
 
