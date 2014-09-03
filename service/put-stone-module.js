@@ -6,11 +6,10 @@ var put = function (path, stone, config, name, grunt, elements, options) {
 	'use strict';
 
 	grunt.log.writeln('Checking deps for ', name);
-	var module = require('./module-reader.js')(grunt.file.read(path));
+	var module = require('./module-reader.js')(grunt.file.read((config.baseUrl || './') + path));
 	elements [name] = true;
 	module.deps.forEach(function (dep) {
 		if (dep === 'module') {
-			grunt.log.warn('module config');
 			
 		} else if (!elements [dep]) {
 			if (/\.js$/.test(dep)) {

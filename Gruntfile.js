@@ -33,11 +33,11 @@ module.exports = function(grunt) {
       xhr: {
         options: {
           stoneName: 'xhr',
-          configFile: 'app.js',
-          baseDir: 'O:/requirejs-seed/app/scripts'
+          configFile: 'scripts/app.js',
+          baseDir: 'O:/requirejs-seed/app'
         },
         files: {
-          '../../.tmp/xhr.js': 'services/xhr.js'
+          '../.tmp/xhr.js': 'services/xhr.js'
         }
       }
     },
