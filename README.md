@@ -20,7 +20,16 @@ grunt.loadNpmTasks('grunt-stonejs');
 ## The "stonejs" task
 
 ### Overview
-In your project's Gruntfile, add a section named `stonejs` to the data object passed into `grunt.initConfig()`.
+Use this task to compile any of your modules in a typical requirejs project.
+You can compile any part or multiple parts of the same project.
+
+Your source code is not concatenated with any loader (like requirejs or almond) so there is basicly zero overhead.
+Useful for creating small js libraries while developing them in an AMD environment.
+
+If your code takes say 15kbytes of code then why adding another 15 for almond?
+The output can be further minified (f.ex. with uglify).
+
+If you wish to make the stone AMD compiland you should concatenate the result with some sort of custom code the reach the goal and then remove window.'stoneName'.
 
 ```js
 grunt.initConfig({
