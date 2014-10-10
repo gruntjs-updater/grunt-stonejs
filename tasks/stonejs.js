@@ -15,31 +15,38 @@ module.exports = function(grunt) {
 
 	grunt.registerMultiTask('stonejs', 'AMD to stone compiler. Best ever.',	function() {
 		var options = this.options({baseDir: '.', innerContainer: '__stone_modules', stoneName: 'stone'});
-		grunt.file.setBase(options.baseDir);
+		var cwd = process.cwd();
 		
-		var config = require('../service/config-reader.js')(grunt.file.read(options.configFile));
-		this.files.forEach(function(f) {
-			if (f.orig.src.length === 0) {
-				grunt.log.error('No source file specified.');
-				
-			} else if (f.orig.src.length > 1) {
-				grunt.log.error('Only one source file per stone is supported.');
-				
-			} else {
-				var stone = {src: 'var ' + options.stoneName + ' = (function () {\nvar ' + options.innerContainer + ' = {};\n'};
-				var elements = {};
-				
-				require('../service/put-stone-module.js')(f.orig.src [0], stone, config, options.stoneName, grunt, elements, options);
+		try {
+			grunt.file.setBase(options.baseDir);
+			
+			var config = require('../service/config-reader.js')(grunt.file.read(options.configFile));
+			this.files.forEach(function(f) {
+				if (f.orig.src.length === 0) {
+					grunt.log.error('No source file specified.');
 					
-				stone.src += 'return ' + options.innerContainer + ' [\'' + options.stoneName + '\'];\n})();';
-				grunt.file.write(f.dest, stone.src);
+				} else if (f.orig.src.length > 1) {
+					grunt.log.error('Only one source file per stone is supported.');
+					
+				} else {
+					var stone = {src: 'var ' + options.stoneName + ' = (function () {\nvar ' + options.innerContainer + ' = {};\n'};
+					var elements = {};
+					
+					require('../service/put-stone-module.js')(f.orig.src [0], stone, config, options.stoneName, grunt, elements, options);
+						
+					stone.src += 'return ' + options.innerContainer + ' [\'' + options.stoneName + '\'];\n})();';
+					grunt.file.write(f.dest, stone.src);
 
-				grunt.log.writeln('JS Stone "' + f.dest + '" created.');
-			}
+					grunt.log.writeln('JS Stone "' + f.dest + '" created.');
+				}
+				
+				
+				
+			});
 			
-			
-			
-		});
+		} finally {
+			grunt.file.setBase(cwd);
+		}
 	});
 
 };
